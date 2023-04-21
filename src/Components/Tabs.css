@@ -1,0 +1,4 @@
+.padding-5-left::before
+{
+    padding-right: 5px;
+}

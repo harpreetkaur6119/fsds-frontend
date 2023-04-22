@@ -12,12 +12,10 @@ class PredictTab extends React.Component {
     this.resetImageLoad = this.resetImageLoad.bind(this)
   }
   onSubmit(event){
-    // const api = axios.create({
-    //   baeURL:"localhost:5000"
-    // })
+    const base = process.env.REACT_APP_API_BASE;
     let formData = new FormData();
     formData.append('file',this.state.imageFile)
-    axios.post("http://localhost:5000/dmz/prediction",formData,{
+    axios.post("http://"+base+"/dmz/prediction",formData,{
       headers: {
        'Content-Type': 'multipart/form-data',
        'accept' : 'application/json'

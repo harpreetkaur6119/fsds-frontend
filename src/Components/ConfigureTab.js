@@ -11,6 +11,7 @@ class ConfigureTab extends React.Component {
     this.filepickerHandler = this.filepickerHandler.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.resetLoad = this.resetLoad.bind(this)
+    this.base = process.env.REACT_APP_API_BASE;
   }
   filepickerHandler(event) {
     var file = this.refs.file.files[0];
@@ -26,7 +27,7 @@ class ConfigureTab extends React.Component {
   onSubmit(event){
     let formData = new FormData();
     formData.append('file',this.state.loadedFile)
-    axios.post("http://localhost:5000/dmz/update_classifier_file",formData,{
+    axios.post("http://"+this.base+"/dmz/update_classifier_file",formData,{
       headers: {
        'Content-Type': 'multipart/form-data',
        'accept' : 'application/json'
@@ -50,8 +51,8 @@ class ConfigureTab extends React.Component {
     console.log('clicked model')
     
   }
-  resetLoad(event){
-    axios.get("http://localhost:5000/dmz/reset_classifier",{
+  resetLoad(event){ 
+    axios.get("http://"+this.base+"/dmz/reset_classifier",{
       headers: {
        'accept' : 'application/json'
       }
